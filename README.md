@@ -37,46 +37,38 @@ All available environments with sparse rewards evaluated in our paper are listed
 * Robotics-Sparse:
     - `MyFetchRobot/Reach-Jnt-Sparse-v0`: the *RobotReach* task.
     - `MyFetchRobot/Push-Jnt-Sparse-v0`: the *RobotPush* task.
-* Classic control:
-    - `MountainCarContinuous-v0`: the *MountainCar* task.
 
 All hyper-parameters are set as default values in the code. You can change them by adding arguments to the command line. All available arguments are listed below:
 
 ```
---env-id: the task id
 --exp-name: the name of the experiment, to record the tensorboard and save the model.
+--env-id: the task id
 --seed: the random seed.
 --cuda: the cuda device, default is 0, the code will automatically choose "cpu" if cuda is not available.
 --gamma: the discount factor.
 
---proposed-reward-scale: the scale of the proposed reward, default is 1.
---beta: the weight of the proposed reward, default is 0.2.
+--pa-buffer-size: the buffer size to replay experiences.
+--rb-optimize-memory: whether to optimize the memory
+--batch-size: the batch size
 
---pa-buffer-size: the buffer size of the policy agent.
---pa-rb-optimize-memory: whether to optimize the memory of the policy agent
---pa-batch-size: the batch size of the policy agent
---ra-buffer-size: the buffer size of the reward agent.
---ra-rb-optimize-memory: whether to optimize the memory of the reward agent
---ra-batch-size: the batch size of the reward agent
+--actor-lr: the learning rate of the actor
+--critic-lr: the learning rate of the critic
+--alpha: the alpha to balance the maximum entropy term
+--alpha-autotune: whether to autotune the alpha, default is True
+--alpha-lr: the learning rate of the alpha
 
---pa-actor-lr: the learning rate of the actor of the policy agent
---pa-critic-lr: the learning rate of the critic of the policy agent
---pa-alpha-lr: the learning rate of the alpha of the policy agent
---ra-actor-lr: the learning rate of the actor of the reward agent
---ra-critic-lr: the learning rate of the critic of the reward agent
---ra-alpha-lr: the learning rate of the alpha of the reward agent
+--target-frequency: the target network update frequency
+--tau: the tau for the soft update of the target network
+--policy-frequency: the policy network update frequency
 
---pa-policy-frequency: the policy frequency of the policy agent
---pa-target-frequency: the target frequency of the policy agent
---pa-tau: the tau of the policy agent
---ra-policy-frequency: the policy frequency of the reward agent
---ra-target-frequency: the target frequency of the reward agent
---ra-tau: the tau of the reward agent
+--total-timesteps: the total timesteps to train the model
+--learning-starts: the burn-in period to start learning
 
---pa-alpha: the alpha of the policy agent
---pa-alpha-autotune: whether to autotune the alpha of the policy agent
---ra-alpha: the alpha of the reward agent
---ra-alpha-autotune: whether to autotune the alpha of the reward agent
+--reward-weight: the weight factor of the shaped reward
+--kde-bandwidth: the bandwidth of the kernel density estimation
+--kde-sample-burnin: the burn-in period to sample the KDE
+--rff-dim: the dimension of the random Fourier features
+--retention-rate: the retention rate
 
 --write-frequency: the frequency to write the tensorboard
 --save-folder: the folder to save the model
@@ -84,39 +76,39 @@ All hyper-parameters are set as default values in the code. You can change them 
 
 ## Some Experimental Results
 
-The saved experimental results can be found in [this folder](./experiments/data). You can run the following command to show the experimental results:
+The saved experimental results can be found in [this zipped file](./Experiments/exp-data.zip), to use the data, unzip them in the same folder. You can run the following command to plot the experimental results:
 
 - To evaluate the learning performance in comparison with baselines:
 ```
-python ./experiments/comparison.py
+python ./Experiments/comparison.py
 ```
 
-![Comparison the learning performance of ReLara with the baselines.](./readme-images/comparison-baselines.svg)
+![Comparison the learning performance of ReLara with the baselines.](./readme-images/comparison.svg)
 
 
-- To compare ReLara with learning R(s,a) and R(s) as reward functions:
-
-```
-python ./experiments/rsa-vs-rs.py
-```
-
-![Comparison of the ReLara with the reward function R(s, a) and its variant to learn the R(s) function.](./readme-images/rsa-vs-rs.svg)
-
-- To compare ReLara with two ablation variants, one with the reward agent at pre-half-stage and another with the reward agent at post-half-stage:
+- *Ablation study #1* To compare SASR with or without the sampling process:
 
 ```
-python ./experiments/pre-vs-post-stages.py
+python ./Experiments/without-sampling.py
 ```
 
-![Comparison of ReLara with the two variants that the reward agent is only involved in the pre- and post-half stages.](./readme-images/pre-vs-post-stages.svg)
+![Comparison of the SASR with or without the sampling process.](./readme-images/without-sampling.svg)
 
-- To compare ReLara with different scales of the proposed reward:
+- *Ablation study #2* To compare SASR with different retention rates:
 
 ```
-python ./experiments/diff-beta.py
+python ./Experiments/retention-rate.py
 ```
 
-![Comparison of different suggested reward weight factors in ReLara.](./readme-images/diff-beta.svg)
+![Comparison of SASR with different retention rates.](./readme-images/diff-retention-rate.svg)
+
+- *Ablation study #3* To compare SASR with different scales of the shaped reward:
+
+```
+python ./Experiments/reward-weight.py
+```
+
+![Comparison of different weight factors for the shaped reward.](./readme-images/diff-reward-weights.svg)
 
 
 

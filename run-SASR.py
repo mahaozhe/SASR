@@ -27,17 +27,13 @@ def parse_args():
 
     parser.add_argument("--policy-lr", type=float, default=3e-4)
     parser.add_argument("--q-lr", type=float, default=1e-3)
-    parser.add_argument("--alpha-lr", type=float, default=1e-4)
-
     parser.add_argument("--alpha", type=float, default=0.2)
     parser.add_argument("--alpha-autotune", type=bool, default=True)
+    parser.add_argument("--alpha-lr", type=float, default=1e-4)
 
     parser.add_argument("--target-network-frequency", type=int, default=1)
     parser.add_argument("--tau", type=float, default=0.005)
     parser.add_argument("--policy-frequency", type=int, default=2)
-
-    parser.add_argument("--write-frequency", type=int, default=100)
-    parser.add_argument("--save-folder", type=str, default="./sasr/")
 
     parser.add_argument("--total-timesteps", type=int, default=1000000)
     parser.add_argument("--learning-starts", type=int, default=5e3)
@@ -48,6 +44,9 @@ def parse_args():
 
     parser.add_argument("--rff-dim", type=int, default=1000)
     parser.add_argument("--retention-rate", type=float, default=0.1)
+
+    parser.add_argument("--write-frequency", type=int, default=100)
+    parser.add_argument("--save-folder", type=str, default="./sasr/")
 
     args = parser.parse_args()
     return args
