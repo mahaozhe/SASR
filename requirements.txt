@@ -1,0 +1,8 @@
+numpy
+matplotlib
+scipy
+gymnasium
+gymnasium[mujoco]
+gymnasium-robotics
+scikit-learn
+tensorboard
