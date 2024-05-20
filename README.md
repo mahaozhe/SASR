@@ -76,7 +76,7 @@ All hyper-parameters are set as default values in the code. You can change them 
 
 ## Some Experimental Results
 
-The saved experimental results can be found in [this zipped file](./Experiments/exp-data.zip), to use the data, unzip them in the same folder. You can run the following command to plot the experimental results:
+The saved experimental results can be found in [this folder](./Experiments/exp-data). You can run the following command to plot the experimental results:
 
 - To evaluate the learning performance in comparison with baselines:
 ```
