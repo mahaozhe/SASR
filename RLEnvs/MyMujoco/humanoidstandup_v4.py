@@ -270,7 +270,7 @@ class HumanoidStandupEnv(MujocoEnv, utils.EzPickle):
 
 
 register(
-    id="MyMujoco/HumanoidStandup-Sparse",
+    id="MyMujoco/Humanoid-Keep-Sparse",
     entry_point="RLEnvs.MyMujoco.humanoidstandup_v4:HumanoidStandupEnv",
     max_episode_steps=200,
     kwargs={"reward_type": "sparse", "height_th": 0.2},
