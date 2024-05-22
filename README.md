@@ -1,4 +1,4 @@
-# Self-Adaptive Success Rate based Reward Shaping (SASR)
+# Highly Efficient Self-Adaptive Reward Shaping for Reinforcement Learning (SASR)
 
 ## Table of Contents
 
@@ -32,8 +32,8 @@ All available environments with sparse rewards evaluated in our paper are listed
 * Mujoco-Sparse:
     - `MyMujoco/Ant-Height-Sparse`: the *AntStand* task.
     - `MyMujoco/Ant-Far-Sparse`: the *AntFar* task.
-    - `MyMujoco/Humanoid-Keep-Sparse`: the *HumanKeep* task.
     - `MyMujoco/HumanoidStandup-Sparse`: the *HumanStand* task.
+    - `MyMujoco/Humanoid-Keep-Sparse`: the *HumanKeep* task.
 * Robotics-Sparse:
     - `MyFetchRobot/Reach-Jnt-Sparse-v0`: the *RobotReach* task.
     - `MyFetchRobot/Push-Jnt-Sparse-v0`: the *RobotPush* task.
@@ -76,14 +76,14 @@ All hyper-parameters are set as default values in the code. You can change them 
 
 ## Some Experimental Results
 
-The saved experimental results can be found in [this folder](./Experiments/exp-data). You can run the following command to plot the experimental results:
+The saved experimental results can be found in [this zipped file](./Experiments/exp-data.zip), to use the data, unzip them in the same folder. You can run the following command to plot the experimental results:
 
 - To evaluate the learning performance in comparison with baselines:
 ```
 python ./Experiments/comparison.py
 ```
 
-![Comparison the learning performance of ReLara with the baselines.](./readme-images/comparison.svg)
+![Comparison of the learning performance of SASR with the baselines.](./readme-images/comparison.svg)
 
 
 - *Ablation study #1* To compare SASR with or without the sampling process:
