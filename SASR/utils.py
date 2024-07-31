@@ -1,7 +1,25 @@
 from minigrid.wrappers import *
 
 from RLEnvs.MyFetchRobot import reach, push
-from RLEnvs.MyMujoco import ant_v4, humanoid_v4, humanoidstandup_v4
+from RLEnvs.MyMujoco import ant_v4, humanoid_v4, humanoidstandup_v4, walker2d_v4
+
+
+def classic_control_env_maker(env_id, seed=1, render=False):
+    """
+    Make the environment.
+    :param env_id: the name of the environment
+    :param seed: the random seed
+    :param render: whether to render the environment
+    :return: the environment
+    """
+    env = gym.make(env_id) if not render else gym.make(env_id, render_mode="human")
+
+    env.action_space.seed(seed)
+    env.observation_space.seed(seed)
+
+    env = gym.wrappers.RecordEpisodeStatistics(env)
+
+    return env
 
 
 def continuous_control_env_maker(env_id, seed=1, render=False, **kwargs):

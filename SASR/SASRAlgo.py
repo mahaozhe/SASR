@@ -312,3 +312,7 @@ class SASR:
                    os.path.join(self.save_folder, "qf_1-{}-{}-{}.pth".format(self.exp_name, indicator, self.seed)))
         torch.save(self.qf_2.state_dict(),
                    os.path.join(self.save_folder, "qf_2-{}-{}-{}.pth".format(self.exp_name, indicator, self.seed)))
+
+        # save the replay buffer
+        np.save(os.path.join(self.save_folder, "RB-{}-{}-{}.npy".format(self.exp_name, indicator, self.seed)),
+                np.array(self.replay_buffer.observations))

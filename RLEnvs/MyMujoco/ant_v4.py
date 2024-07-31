@@ -405,8 +405,22 @@ register(
 )
 
 register(
+    id="MyMujoco/Ant-Speed-Sparse",
+    entry_point="RLEnvs.MyMujoco.ant_v4:AntEnv",
+    max_episode_steps=200,
+    kwargs={"reward_type": "sparse", "task": "speed", "random_tgt": False, "tgt_speed": 4.0},
+)
+
+register(
     id="MyMujoco/Ant-Far-Sparse",
     entry_point="RLEnvs.MyMujoco.ant_v4:AntEnv",
     max_episode_steps=200,
     kwargs={"reward_type": "sparse", "task": "pos", "random_tgt": False, "tgt_speed": 3.0},
+)
+
+register(
+    id="MyMujoco/Ant-Very-Far-Sparse",
+    entry_point="RLEnvs.MyMujoco.ant_v4:AntEnv",
+    max_episode_steps=200,
+    kwargs={"reward_type": "sparse", "task": "pos", "random_tgt": False, "tgt_speed": 4.0},
 )

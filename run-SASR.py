@@ -6,7 +6,7 @@ import argparse
 
 from SASR.SASRAlgo import SASR
 from SASR.Networks import SACActor, QNetworkContinuousControl
-from SASR.utils import continuous_control_env_maker
+from SASR.utils import continuous_control_env_maker, classic_control_env_maker
 
 
 def parse_args():
@@ -55,7 +55,10 @@ def parse_args():
 def run():
     args = parse_args()
 
-    env = continuous_control_env_maker(env_id=args.env_id, seed=args.seed, render=args.render)
+    # env = continuous_control_env_maker(env_id=args.env_id, seed=args.seed, render=args.render)
+    env = continuous_control_env_maker(env_id=args.env_id, seed=args.seed,
+                                       render=args.render) if args.env_id.startswith(
+        "My") else classic_control_env_maker(env_id=args.env_id, seed=args.seed, render=args.render)
 
     agent = SASR(env=env, actor_class=SACActor, critic_class=QNetworkContinuousControl, exp_name=args.exp_name,
                  seed=args.seed, cuda=args.cuda, gamma=args.gamma, buffer_size=args.buffer_size,
