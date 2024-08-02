@@ -152,9 +152,13 @@ class SASR:
         self.obs_dim = env.observation_space.shape[0]
 
         # * sample the RFF mapping function
-        self.rff_dim = rff_dim
-        self.rff_W = torch.randn(rff_dim, self.obs_dim).to(self.device) / kde_bandwidth
-        self.rff_b = torch.rand(rff_dim).to(self.device) * 2 * torch.pi
+        if rff_dim is None:
+            self.rff = False
+        else:
+            self.rff = True
+            self.rff_dim = rff_dim
+            self.rff_W = torch.randn(rff_dim, self.obs_dim).to(self.device) / kde_bandwidth
+            self.rff_b = torch.rand(rff_dim).to(self.device) * 2 * torch.pi
 
     def update_S(self, trajectory):
         retention_interval = int(1 / self.retention_rate) + 1
@@ -183,6 +187,19 @@ class SASR:
         z_batch = math.sqrt(2 / self.rff_dim) * torch.cos(torch.matmul(batch, self.rff_W.T) + self.rff_b)
 
         kde_estimates = torch.sum(torch.matmul(z_buffer, z_batch.T) ** 2, dim=0)
+
+        return kde_estimates
+
+    def KDE_sample(self, buffer, batch):
+        if buffer.shape[0] <= self.kde_sample_burn_in:
+            return torch.zeros(batch.shape[0]).to(self.device)
+
+        distances_squared = torch.sum((batch[:, None, :] - buffer[None, :, :]) ** 2, dim=2)
+
+        kernel_values = (1 / (2 * torch.pi * self.kde_bandwidth ** 2) ** (self.obs_dim / 2)) * torch.exp(
+            -distances_squared / (2 * self.kde_bandwidth ** 2))
+
+        kde_estimates = torch.sum(kernel_values, dim=1)
 
         return kde_estimates
 
@@ -248,8 +265,14 @@ class SASR:
             min_qf_next_target = torch.min(qf_1_next_target, qf_2_next_target) - self.alpha * next_state_log_pi
 
             # * to calculate the SASR reward
-            density_values_S = self.KDE_RFF_sample(self.S_buffer_tensor, data.observations)
-            density_values_F = self.KDE_RFF_sample(self.F_buffer_tensor, data.observations)
+            # density_values_S = self.KDE_RFF_sample(self.S_buffer_tensor, data.observations)
+            # density_values_F = self.KDE_RFF_sample(self.F_buffer_tensor, data.observations)
+            density_values_S = self.KDE_RFF_sample(self.S_buffer_tensor,
+                                                   data.observations) if self.rff else self.KDE_sample(
+                self.S_buffer_tensor, data.observations)
+            density_values_F = self.KDE_RFF_sample(self.F_buffer_tensor,
+                                                   data.observations) if self.rff else self.KDE_sample(
+                self.F_buffer_tensor, data.observations)
             shaped_rewards = Beta(density_values_S + 1, density_values_F + 1).sample()
 
             sasr_rewards = data.rewards.flatten() + self.reward_weight * shaped_rewards
