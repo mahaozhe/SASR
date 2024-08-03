@@ -7,12 +7,12 @@ plt.rcParams["font.family"] = "Times New Roman"
 
 data_folder = "./exp-data/"
 
-algos = ["M50", "M500", "sasr", "M2000"]
+algos = ["m50", "m500", "sasr", "m2000"]
 envs = ['AntStand', 'AntSpeed', 'AntFar', 'AntVeryFar', 'WalkerKeep',
         'HumanStand', 'HumanKeep', 'RobotReach', 'RobotPush', 'MountainCar']
 
 labels = [r"$M=50$", r"$M=500$", r"$M=1000$ (default)", r"$M=2000$"]
-colors = ["#757574", "#FFD700", "aquamarine", "#E5A2C4", "#6F6DA1", "#1E7C4A", "#D07F2C", "#13679E", "#AB3A29"]
+colors = ["#1E7C4A", "#D07F2C", "#AB3A29", "#13679E"]
 
 fig, axs = plt.subplots(2, 5, figsize=(25, 6.8))
 
