@@ -14,7 +14,7 @@ envs = ['AntStand', 'AntSpeed', 'AntFar', 'AntVeryFar', 'WalkerKeep',
 labels = [r"$M=50$", r"$M=500$", r"$M=1000$ (default)", r"$M=2000$"]
 colors = ["#1E7C4A", "#D07F2C", "#AB3A29", "#13679E"]
 
-fig, axs = plt.subplots(2, 5, figsize=(25, 6.8))
+fig, axs = plt.subplots(2, 5, figsize=(25, 6))
 
 for i in range(len(envs)):
     if i == 0:

@@ -12,13 +12,12 @@ envs = ['AntStand', 'AntFar', 'HumanStand', 'HumanKeep', "RobotReach", "RobotPus
 labels = [r'$\phi=1$', r'$\phi=0.1$ (default)', r'$\phi=0.01$']
 colors = ["#13679E", "#AB3A29", "#D07F2C"]
 
-fig, axs = plt.subplots(1, 6, figsize=(30, 4.2))
+fig, axs = plt.subplots(1, 6, figsize=(30, 4.5))
 
 for i in range(len(envs)):
     if i == 0:
-        axs[i].set_ylabel('Episode returns', fontsize=24)
-        axs[i].set_xlabel('Steps (in thousands)', fontsize=24)
-        axs[i].tick_params(axis='both', which='both')
+        axs[i].set_ylabel('Episode returns', fontsize=20)
+        axs[i].set_xlabel(r'Steps ($\times 10^3$)', fontsize=20)
 
     for j in range(len(algos)):
         data_path = os.path.join(data_folder, envs[i], f"{algos[j]}.npy")
@@ -36,9 +35,9 @@ for i in range(len(envs)):
 # get the legend from the first sub-figure
 legend_handles, legend_labels = axs[0].get_legend_handles_labels()
 
-fig.legend(legend_handles, legend_labels, loc='lower center', ncol=3, fontsize=24, columnspacing=1)
-plt.subplots_adjust(bottom=0.27, hspace=0.1)
+fig.legend(legend_handles, legend_labels, loc='lower center', ncol=3, fontsize=20, columnspacing=1)
+plt.subplots_adjust(bottom=0.24, hspace=0.1)
 
-plt.savefig("./diff-retention-rate.svg", bbox_inches='tight', pad_inches=0.05)
+plt.savefig("./diff-retention-rate.pdf", bbox_inches='tight', pad_inches=0.05)
 
 plt.show()
