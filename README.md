@@ -120,7 +120,7 @@ We compared SASR with several baselines, including [ReLara](https://proceedings.
 
 ![Comparison of SASR with different RFF feature dimensions.](./readme-images/diff-rff-dim.svg)
 
-- *Ablation study #5* SASR with different scales $\lambda$ of the shaped reward:
+- *Ablation study #5*: SASR with different scales $\lambda$ of the shaped reward:
 
 ![Comparison of different weight factors for the shaped reward.](./readme-images/diff-reward-weights.svg)
 
