@@ -2,7 +2,7 @@
 
 The codes for our proposed **S**elf-**A**daptive **S**uccess **R**ate based reward shaping algorithm (SASR) for reinforcement learning to tackle the sparse-reward challenge.
 
-[Paper Link]()
+[Paper Link](https://arxiv.org/abs/2408.03029)
 
 The principles of the SASR mechanism is shown as follows, inspired by the Thompson sampling, we use an evolving Beta distribution to sample estimated success rate for each state as the shaped reward.
 
