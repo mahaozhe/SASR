@@ -43,6 +43,6 @@ legend_handles, legend_labels = axs[0].get_legend_handles_labels()
 fig.legend(legend_handles, legend_labels, loc='lower center', ncol=4, fontsize=20, columnspacing=1)
 plt.subplots_adjust(bottom=0.24, hspace=0.1)
 
-plt.savefig("./rff-dim-arxiv.pdf", bbox_inches='tight', pad_inches=0.05)
+plt.savefig("./rff-dim-arxiv.svg", bbox_inches='tight', pad_inches=0.05)
 
 plt.show()

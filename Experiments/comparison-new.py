@@ -14,7 +14,7 @@ envs = ['AntStand', 'AntSpeed', 'AntFar', 'AntVeryFar', 'WalkerKeep',
 labels = ["PPO", "TD3", "SAC", "RND", "#Explo", "ExploRS", "ROSA", "ReLara", "SASR"]
 colors = ["#757574", "#FFD700", "aquamarine", "#E5A2C4", "#6F6DA1", "#1E7C4A", "#D07F2C", "#13679E", "#AB3A29"]
 
-fig, axs = plt.subplots(2, 5, figsize=(25, 6))
+fig, axs = plt.subplots(2, 5, figsize=(25, 7.2))
 
 for i in range(len(envs)):
     if i == 0:
@@ -53,6 +53,6 @@ labels_new = [legend_labels[i] for i in order]
 fig.legend(handles_new, labels_new, loc='lower center', ncol=9, fontsize=17, columnspacing=1)
 plt.subplots_adjust(bottom=0.14, hspace=0.3)
 
-plt.savefig("./comparison-new.pdf", bbox_inches='tight', pad_inches=0.05)
+plt.savefig("./comparison.svg", bbox_inches='tight', pad_inches=0.05)
 
 plt.show()

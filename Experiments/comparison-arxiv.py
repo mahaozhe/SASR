@@ -46,6 +46,6 @@ labels_new = [legend_labels[i] for i in order]
 fig.legend(handles_new, labels_new, loc='lower center', ncol=9, fontsize=20, columnspacing=1)
 plt.subplots_adjust(bottom=0.24, hspace=0.1)
 
-plt.savefig("./comparison-arxiv.pdf", bbox_inches='tight', pad_inches=0.05)
+plt.savefig("./comparison-arxiv.svg", bbox_inches='tight', pad_inches=0.05)
 
 plt.show()
