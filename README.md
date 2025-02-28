@@ -1,4 +1,4 @@
-# Highly Efficient Self-Adaptive Reward Shaping for Reinforcement Learning (SASR)
+# [ICLR 2025] Highly Efficient Self-Adaptive Reward Shaping for Reinforcement Learning (SASR)
 
 The codes for our proposed **S**elf-**A**daptive **S**uccess **R**ate based reward shaping algorithm (SASR) for reinforcement learning to tackle the sparse-reward challenge.
 
@@ -125,4 +125,15 @@ We compared SASR with several baselines, including [ReLara](https://proceedings.
 ![Comparison of different weight factors for the shaped reward.](./readme-images/diff-reward-weights.svg)
 
 
+## Citation
 
+If you find this code useful for your research, please consider citing our paper:
+
+```bibtex
+@inproceedings{ma2025,
+  title={Highly efficient self-adaptive reward shaping for reinforcement learning},
+  author={Ma, Haozhe and Luo, Zhengding and Vo, Thanh Vinh and Sima, Kuankuan and Leong, Tze-Yun},
+  booktitle={International Conference on Learning Representations},
+  year={2025},
+}
+```
